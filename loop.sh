@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 if [ -z "$SLEEP" ]; then
     SLEEP="300"
 fi
@@ -14,8 +12,19 @@ if [ -z "$SKIP_EXISTING" ]; then
     SKIP_EXISTING="true"
 fi
 
+print_line() {
+    echo "----------------------------------------"
+    echo "$1"
+    echo "----------------------------------------"
+}
+
+print_line "Settings:
+- SLEEP: $SLEEP seconds
+- THREADS: $THREADS
+- SKIP_EXISTING: $SKIP_EXISTING"
+
 while true; do
-    echo "Starting run at $(date)"
+    print_line "Starting run at $(date)"
     
     ARGS="-m $THREADS"
     if [ "$SKIP_EXISTING" = "true" ]; then
@@ -23,8 +32,6 @@ while true; do
     fi
     rsgain easy $ARGS /music
     
-    echo "Run finished run at $(date)"
-    echo "Sleeping for $SLEEP seconds..."
+    print_line "Run finished run at $(date). Sleeping for $SLEEP seconds..."
     sleep $SLEEP
-    clear
 done
