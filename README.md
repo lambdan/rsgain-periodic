@@ -1,5 +1,8 @@
 # rsgain-periodic
-Dead simple Docker container that runs rsgain periodically
+
+Dead simple Docker container that runs [rsgain](https://github.com/complexlogic/rsgain) periodically on a folder.
+
+Nothing more, nothing less.
 
 
 ## Docker Compose example
